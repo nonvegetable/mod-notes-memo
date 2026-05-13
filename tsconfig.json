@@ -23,7 +23,9 @@
     "sourceMap": true,
     "target": "ES2022",
     "outDir": "dist/types",
-    "tsBuildInfoFile": "dist/types/tsconfig.tsbuildinfo"
+    "tsBuildInfoFile": "dist/types/tsconfig.tsbuildinfo",
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
   "include": ["src/**/*", "vite.config.ts"],
   "exclude": []

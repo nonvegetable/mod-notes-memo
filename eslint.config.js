@@ -10,7 +10,7 @@ export default defineConfig([
     files: ['src/**/*.{ts,tsx,mjs,cjs,js}'],
     languageOptions: {
       ecmaVersion: 2023,
-      globals: globals.node,
+      globals: { ...globals.node, ...globals.browser },
       parserOptions: {
         project: ['./tsconfig.json'],
         tsconfigRootDir: import.meta.dirname,
@@ -20,7 +20,7 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,tsx}'],
     rules: {
-      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/no-floating-promises': ['error', { ignoreVoid: true }],
       '@typescript-eslint/no-unused-vars': ['off'],
       'no-unused-vars': ['off'],
     },

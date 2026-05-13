@@ -1,0 +1,273 @@
+/**
+ * Styles for Mod Notes Memo components
+ */
+
+.mod-note-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.mod-note-composer h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mod-note-input {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.mod-note-input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.1);
+}
+
+.mod-note-composer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.mod-note-char-count {
+  color: #666;
+  font-size: 12px;
+  min-width: 40px;
+}
+
+.mod-note-label-select {
+  flex: 1;
+  max-width: 200px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+}
+
+.mod-note-label-select:focus {
+  outline: none;
+  border-color: #0a66c2;
+}
+
+.mod-note-btn-submit {
+  padding: 8px 16px;
+  background: #0a66c2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mod-note-btn-submit:hover:not(:disabled) {
+  background: #0857a8;
+}
+
+.mod-note-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mod-note-error {
+  color: #d32f2f;
+  font-size: 12px;
+  padding: 8px;
+  background: #ffebee;
+  border-left: 3px solid #d32f2f;
+}
+
+/* Notes List */
+.mod-notes-list {
+  margin-top: 20px;
+}
+
+.mod-notes-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a66c2;
+}
+
+.mod-notes-empty,
+.mod-notes-loading,
+.mod-notes-error {
+  padding: 16px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.mod-notes-error {
+  color: #d32f2f;
+  background: #ffebee;
+  border-left: 3px solid #d32f2f;
+}
+
+/* Note Card */
+.mod-note-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: white;
+  margin-bottom: 12px;
+}
+
+.mod-note-card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mod-note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mod-note-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+.mod-note-author {
+  font-weight: 600;
+  color: #0a66c2;
+}
+
+.mod-note-time {
+  color: #999;
+}
+
+.mod-note-edited {
+  color: #999;
+  font-style: italic;
+}
+
+.mod-note-label {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.mod-note-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.mod-note-btn {
+  padding: 4px 8px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mod-note-btn:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+
+.mod-note-btn-edit {
+  color: #0a66c2;
+}
+
+.mod-note-btn-delete {
+  color: #d32f2f;
+}
+
+.mod-note-content {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  word-wrap: break-word;
+}
+
+.mod-note-history {
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  margin: 0;
+}
+
+.mod-note-history summary {
+  padding: 4px 0;
+  user-select: none;
+}
+
+.mod-note-history summary:hover {
+  color: #0a66c2;
+}
+
+.mod-note-history ul {
+  margin: 8px 0 0 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+  color: #999;
+}
+
+.mod-note-history li {
+  margin: 4px 0;
+}
+
+/* Mod-only badge */
+.mod-only-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Post note indicator */
+.mod-note-indicator {
+  display: inline-block;
+  padding: 4px 6px;
+  background: #0a66c2;
+  color: white;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.mod-note-indicator:hover {
+  background: #0857a8;
+}

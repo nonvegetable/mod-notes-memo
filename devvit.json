@@ -8,27 +8,23 @@
   "menu": {
     "items": [
       {
-        "label": "Mop comments",
-        "description": "Remove this comment and all child comments. This might take a few seconds to run.",
-        "location": "comment",
-        "forUserType": "moderator",
-        "endpoint": "/internal/menu/mop-comment"
-      },
-      {
-        "label": "Mop post comments",
-        "description": "Remove all comments of this post. This might take a few seconds to run.",
+        "label": "View Mod Notes",
+        "description": "View all private mod notes for this post.",
         "location": "post",
         "forUserType": "moderator",
-        "endpoint": "/internal/menu/mop-post"
+        "endpoint": "/internal/menu/view-mod-notes"
+      },
+      {
+        "label": "Add Mod Note",
+        "description": "Add a private note for your mod team about this post.",
+        "location": "post",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/add-mod-note"
       }
     ]
   },
   "forms": {
-    "mopComment": "/internal/form/mop-comment-submit",
-    "mopPost": "/internal/form/mop-post-submit"
-  },
-  "triggers": {
-    "onAppInstall": "/internal/triggers/on-app-install"
+    "addModNote": "/internal/form/add-mod-note-submit"
   },
   "scripts": {
     "build": "vite build",
