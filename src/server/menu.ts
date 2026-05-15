@@ -6,7 +6,6 @@
 import { Hono } from 'hono';
 import type { MenuItemRequest, UiResponse } from '@devvit/web/shared';
 import type { FormField } from '@devvit/shared-types/shared/form.js';
-import { getServerPort } from '@devvit/web/server';
 import { LABEL_OPTIONS } from '../shared/types';
 import { buildNotesKey, parseNotes } from './storage';
 import { getFromStore } from './shared-store';
@@ -69,8 +68,8 @@ const buildModNoteForm = (postId: string, subredditId: string) => ({
  */
 menuRoutes.post('/view-mod-notes', async (c) => {
   const request = await c.req.json<MenuItemRequest>();
-  const postId = request.targetId || request.post?.id || 'unknown';
-  const subredditId = request.subreddit?.name || 'unknown';
+  const postId = request.targetId || 'unknown';
+  const subredditId = 'unknown';
 
   console.log(`Viewing mod notes for post ${postId} in subreddit ${subredditId}`);
 

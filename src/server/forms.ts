@@ -46,14 +46,10 @@ formRoutes.post('/add-mod-note-submit', async (c) => {
     console.log('Request keys:', Object.keys(request || {}));
     
     // Use top-level if formData is empty
-    let postId = topLevelPostId || String(formData.postId || '').trim();
-    let subredditId = topLevelSubredditId || String(formData.subredditId || '').trim();
-    let content = topLevelContent || String(formData.content || '').trim();
-    let label = topLevelLabel || String(formData.label || '').trim() || undefined;
-    
-    // Handle defaults if not provided
-    if (!postId) postId = 'post_' + Date.now();
-    if (!subredditId) subredditId = 'unknown';
+    const postId = topLevelPostId || String(formData.postId || '').trim() || 'post_' + Date.now();
+    const subredditId = topLevelSubredditId || String(formData.subredditId || '').trim() || 'unknown';
+    const content = topLevelContent || String(formData.content || '').trim();
+    const label = topLevelLabel || String(formData.label || '').trim() || undefined;
     
     console.log('Final extracted:', { postId, subredditId, contentLength: content.length, label });
     
