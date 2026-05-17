@@ -81,13 +81,13 @@ formRoutes.post('/add-mod-note-submit', async (c) => {
       );
     }
     
-    // Get username from context (in real implementation, use Devvit context)
-    const username = request.userId || 'unknown_mod';
+    // Get username from context
+    const username = c.req.header('devvit-user-name') || request.userId || 'unknown_mod';
     
     try {
       // Get existing notes from storage (works with both Redis and file-based store)
       const key = buildNotesKey(subredditId, postId);
-      console.log('💾 SAVING: key =', key);
+      console.log('SAVING: key =', key);
       
       const data = await getFromStore(key);
       const notes = parseNotes(data);
@@ -98,7 +98,7 @@ formRoutes.post('/add-mod-note-submit', async (c) => {
       
       // Save to storage
       await setInStore(key, serializeNotes(notes));
-      console.log('💾 SAVED: Note created:', newNote.id);
+      console.log('SAVED: Note created:', newNote.id);
       
       return c.json<UiResponse>(
         {

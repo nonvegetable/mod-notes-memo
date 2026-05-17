@@ -58,8 +58,8 @@ const App: React.FC = () => {
     <div className="mod-notes-app">
       <div className="mod-notes-container">
         <header className="mod-notes-header">
-          <h1>📝 Mod Notes Memo</h1>
-          <p className="mod-only-badge">🔒 Mod only • Private notes for this post</p>
+          <h1>Mod Notes Memo</h1>
+          <p className="mod-only-badge">Mod only • Private notes for this post</p>
         </header>
 
         <main className="mod-notes-main">

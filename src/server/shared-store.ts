@@ -9,31 +9,30 @@
  * Data persists for the playtest session but is lost on restart (expected behavior).
  */
 
+import { redis as devvitRedis } from '@devvit/web/server';
+
 // Use globalThis as the primary storage (works across module instances in same context)
 function getInMemoryStore(): Record<string, string> {
   const global = globalThis as { modNotesStore?: Record<string, string> };
   if (!global.modNotesStore) {
     global.modNotesStore = {};
-    console.log('🆕 Initialized new in-memory store');
+    console.log('Initialized new in-memory store');
   }
   return global.modNotesStore;
 }
 
-// Try to import Devvit Redis (will fail in some build contexts, that's ok)
+// Try to use Devvit Redis
 let redisAvailable = false;
-let redis: { get: (key: string) => Promise<string | null>; set: (key: string, value: string) => Promise<void>; del: (key: string) => Promise<void> } | null = null;
+let redis: typeof devvitRedis | null = null;
 
 try {
-  // This import only works in actual Devvit runtime
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const devvitModule = require('@devvit/public-api');
-  if (devvitModule && devvitModule.redis) {
-    redis = devvitModule.redis;
+  if (devvitRedis) {
+    redis = devvitRedis;
     redisAvailable = true;
-    console.log('✅ Using Devvit Redis for production storage');
+    console.log('Using Devvit Redis for production storage');
   }
 } catch (err) {
-  console.log('📝 Devvit Redis not available, using in-memory store for playtest');
+  console.log('Devvit Redis not available, using in-memory store for playtest');
 }
 
 /**
@@ -49,14 +48,14 @@ export async function getFromStore(key: string): Promise<string | null> {
     } catch (err) {
       console.error('Redis get error, falling back to memory:', err);
       const store = getInMemoryStore();
-      console.log('📥 getFromStore:', key, '→ found:', !!store[key]);
+      console.log('getFromStore:', key, '→ found:', !!store[key]);
       return store[key] ?? null;
     }
   }
 
   // Playtest: use in-memory store
   const store = getInMemoryStore();
-  console.log('📥 getFromStore:', key, '→ store has', Object.keys(store).length, 'keys, found:', !!store[key]);
+  console.log('getFromStore:', key, '→ store has', Object.keys(store).length, 'keys, found:', !!store[key]);
   return store[key] ?? null;
 }
 
@@ -69,7 +68,7 @@ export async function setInStore(key: string, value: string): Promise<void> {
   if (redisAvailable && redis) {
     try {
       await redis.set(key, value);
-      console.log('💾 setInStore (redis):', key);
+      console.log('setInStore (redis):', key);
       return;
     } catch (err) {
       console.error('Redis set error, falling back to memory:', err);
@@ -79,7 +78,7 @@ export async function setInStore(key: string, value: string): Promise<void> {
   // Playtest: store in memory (globalThis)
   const store = getInMemoryStore();
   store[key] = value;
-  console.log('💾 setInStore (memory):', key, '→ store now has', Object.keys(store).length, 'keys');
+  console.log('setInStore (memory):', key, '→ store now has', Object.keys(store).length, 'keys');
 }
 
 /**
@@ -91,7 +90,7 @@ export async function deleteFromStore(key: string): Promise<void> {
   if (redisAvailable && redis) {
     try {
       await redis.del(key);
-      console.log('🗑️ deleteFromStore (redis):', key);
+      console.log('deleteFromStore (redis):', key);
       return;
     } catch (err) {
       console.error('Redis delete error, falling back to memory:', err);
@@ -101,7 +100,7 @@ export async function deleteFromStore(key: string): Promise<void> {
   // Playtest: delete from memory
   const store = getInMemoryStore();
   delete store[key];
-  console.log('🗑️ deleteFromStore (memory):', key, '→ store now has', Object.keys(store).length, 'keys');
+  console.log('deleteFromStore (memory):', key, '→ store now has', Object.keys(store).length, 'keys');
 }
 
 /**

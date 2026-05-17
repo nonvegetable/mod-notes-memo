@@ -49,7 +49,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
               className="mod-note-btn mod-note-btn-edit"
               title="Edit note"
             >
-              ✏️
+              Edit
             </button>
             <button
               onClick={() => {
@@ -60,7 +60,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
               className="mod-note-btn mod-note-btn-delete"
               title="Delete note"
             >
-              🗑️
+              Delete
             </button>
           </div>
         )}

@@ -69,7 +69,7 @@ const buildModNoteForm = (postId: string, subredditId: string) => ({
 menuRoutes.post('/view-mod-notes', async (c) => {
   const request = await c.req.json<MenuItemRequest>();
   const postId = request.targetId || 'unknown';
-  const subredditId = 'unknown';
+  const subredditId = c.req.header('devvit-subreddit-name') || c.req.header('devvit-subreddit') || 'unknown';
 
   console.log(`Viewing mod notes for post ${postId} in subreddit ${subredditId}`);
 
@@ -141,8 +141,8 @@ menuRoutes.post('/add-mod-note', async (c) => {
     
     // Extract post ID and subreddit ID from context
     const postId = request.targetId; // Post ID from menu context
-    // Default to 'unknown' if subreddit info not available
-    const subredditId = 'unknown';
+    // Extract subreddit info from headers
+    const subredditId = c.req.header('devvit-subreddit-name') || c.req.header('devvit-subreddit') || 'unknown';
     
     console.log(`Opening mod note form for post ${postId} in subreddit ${subredditId}`);
     

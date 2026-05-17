@@ -271,3 +271,64 @@
 .mod-note-indicator:hover {
   background: #0857a8;
 }
+
+/* Notes Highlight View */
+.mod-notes-highlight-container {
+  background: #f0f7ff;
+  border-left: 4px solid #0a66c2;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 4px 8px 8px 4px;
+}
+
+.mod-notes-highlight-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a66c2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mod-notes-highlight-empty {
+  padding: 24px 16px;
+  text-align: center;
+  background: #f8f9fa;
+  border: 1px dashed #e0e0e0;
+  border-radius: 8px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.mod-notes-highlight-empty p {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mod-notes-empty-sub {
+  font-size: 13px;
+  color: #888;
+}
+
+.mod-notes-highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mod-note-btn-header {
+  padding: 8px 16px;
+  background: #0a66c2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mod-note-btn-header:hover {
+  background: #0857a8;
+}
