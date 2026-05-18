@@ -88,31 +88,51 @@ menuRoutes.post('/view-mod-notes', async (c) => {
     if (notes.length === 0) {
       return c.json<UiResponse>(
         {
-          showToast: {
-            text: 'No mod notes for this post yet. Use "Add Mod Note" to create one.',
-            appearance: 'neutral',
+          showForm: {
+            name: 'viewModNotes',
+            form: {
+              title: 'No Mod Notes',
+              fields: [
+                {
+                  name: 'empty',
+                  label: 'Nothing to see here',
+                  type: 'paragraph',
+                  disabled: true,
+                  defaultValue: 'No mod notes for this post yet. Use "Add Mod Note" to create one.',
+                } as FormField
+              ],
+              acceptLabel: 'Done',
+            },
           },
         },
         200
       );
     }
 
-    // Format notes for display
-    const notesText = notes
-      .map((note) => {
-        const createdDate = new Date(note.createdAt).toLocaleString();
-        const label = note.label ? ` [${note.label}]` : '';
-        const edited = note.updatedAt > note.createdAt ? ' (edited)' : '';
-        return `📝 ${note.author}${label}${edited}\n${createdDate}\n${note.content}`;
-      })
-      .join('\n\n---\n\n');
+    // Create form fields for each note
+    const fields: FormField[] = notes.map((note, index) => {
+      const createdDate = new Date(note.createdAt).toLocaleString();
+      const label = note.label ? ` [${note.label}]` : '';
+      const edited = note.updatedAt > note.createdAt ? ' (edited)' : '';
+      
+      return {
+        name: `note_${index}`,
+        label: `${note.author} at ${createdDate}${edited}${label}`,
+        type: 'paragraph',
+        disabled: true,
+        defaultValue: note.content,
+      } as FormField;
+    });
 
-    // Return notes formatted for display in the Devvit UI
     return c.json<UiResponse>(
       {
-        showToast: {
-          text: `📌 Found ${notes.length} mod note(s)\n\n${notesText}`,
-          appearance: 'success',
+        showForm: {
+          name: 'viewModNotes',
+          form: {
+            title: `Mod Notes (${notes.length})`,
+            fields: fields,
+            acceptLabel: 'Done',
+          },
         },
       },
       200

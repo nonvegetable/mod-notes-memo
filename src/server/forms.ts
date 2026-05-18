@@ -134,3 +134,7 @@ formRoutes.post('/add-mod-note-submit', async (c) => {
     );
   }
 });
+
+formRoutes.post('/view-mod-notes-submit', async (c) => {
+  return c.json({ showToast: { text: 'Done viewing notes.', appearance: 'success' } });
+});

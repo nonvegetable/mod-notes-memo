@@ -24,7 +24,8 @@
     ]
   },
   "forms": {
-    "addModNote": "/internal/form/add-mod-note-submit"
+    "addModNote": "/internal/form/add-mod-note-submit",
+    "viewModNotes": "/internal/form/view-mod-notes-submit"
   },
   "scripts": {
     "build": "vite build",
