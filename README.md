@@ -6,10 +6,10 @@
 
 Moderators frequently approve edge-case posts that technically violate minor rules but are kept up for community value, news relevance, or special context. The current Reddit moderation workflow offers a green approval checkmark, but **no built-in way to explain why** to other moderators. This creates:
 
-- ❌ **Context Loss**: Other mods don't understand why an exception was made
-- ❌ **Duplicate Work**: Mods ask "Why is this still up?" repeatedly in mod chat
-- ❌ **Inconsistent Follow-up**: Without documented reasoning, different mods may reverse decisions
-- ❌ **Time Waste**: Asynchronous teams across time zones repeat clarification conversations
+- **Context Loss**: Other mods don't understand why an exception was made
+- **Duplicate Work**: Mods ask "Why is this still up?" repeatedly in mod chat
+- **Inconsistent Follow-up**: Without documented reasoning, different mods may reverse decisions
+- **Time Waste**: Asynchronous teams across time zones repeat clarification conversations
 
 ## Solution
 
@@ -19,14 +19,14 @@ Moderators frequently approve edge-case posts that technically violate minor rul
 
 ### MVP (Launch Version)
 
-✅ **Add Notes**: Quick form to add a brief note (5–500 characters) to any post  
-✅ **View Notes**: See all notes on a post, sorted by most recent first  
-✅ **Edit & Delete**: Modify or remove your own notes; senior mods can manage any note  
-✅ **Labels/Categories**: Optional quick tags like "Rule Exception," "Approved Contextually," "Needs Follow-up," "Pending Review," "Team Decision"  
-✅ **Metadata**: See author, creation time, edit history, and when a note was modified  
-✅ **Mod-Only Visibility**: Notes never appear publicly or to post authors  
-✅ **Persistent Storage**: Notes survive refreshes and are reliably stored via Devvit Redis  
-✅ **Permission Enforcement**: Only moderators can view or create notes  
+- **Add Notes**: Quick form to add a brief note (5–500 characters) to any post  
+- **View Notes**: See all notes on a post, sorted by most recent first  
+- **Edit & Delete**: Modify or remove your own notes; senior mods can manage any note  
+- **Labels/Categories**: Optional quick tags like "Rule Exception," "Approved Contextually," "Needs Follow-up," "Pending Review," "Team Decision"  
+- **Metadata**: See author, creation time, edit history, and when a note was modified  
+- **Mod-Only Visibility**: Notes never appear publicly or to post authors  
+- **Persistent Storage**: Notes survive refreshes and are reliably stored via Devvit Redis  
+- **Permission Enforcement**: Only moderators can view or create notes  
 
 ### Future Features (v2+)
 
@@ -251,9 +251,9 @@ Delete a note (author or senior mod only).
 **Solution**: Post-level private mod notes that let teams document rationale instantly—no modmail, no DMs, no Discord hop.
 
 **Impact**:
-- ⏱️ **Time Savings**: Clarification time from minutes to seconds
-- 🔗 **Consistency**: Exception decisions documented and visible to entire mod team
-- 📊 **Metrics**:
+- **Time Savings**: Clarification time from minutes to seconds
+- **Consistency**: Exception decisions documented and visible to entire mod team
+- **Metrics**:
   - Median time for a second mod to understand why an exception post was approved
   - Reduction in mod-chat clarification requests
   - % of exception posts with documented rationale
